@@ -1,10 +1,10 @@
 #pragma once
 
 #include <QObject>
-#include "./qnotation_global.h"
-#include "./qnotation_extended.h"
+#include "./qannotation_global.h"
+#include "./qannotation_extended.h"
 
-namespace QNotation {
+namespace QAnnotation {
 
 //!
 //! \brief The ObjectNotation class

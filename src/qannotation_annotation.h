@@ -2,33 +2,32 @@
 
 #include <QObject>
 #include <QVariantHash>
-#include "./qnotation_global.h"
-#include "./qnotation_macros.h"
+#include "./qannotation_global.h"
 
-namespace QNotation {
+namespace QAnnotation {
 
 //!
 //! \brief The Notation struct
 //!
-struct Q_NOTATION_EXPORT Notation
+struct Q_ANNOTATION_EXPORT Annotation
 {
 public:
     //!
     //! \brief Notation
     //!
-    explicit Notation();
+    explicit Annotation();
 
     //!
     //! \brief Notation
     //! \param value
     //!
-    explicit Notation(const Notation &value);
+    explicit Annotation(const Annotation &value);
 
     //!
     //! \brief Notation
     //! \param value
     //!
-    explicit Notation(const QVariant &value);
+    explicit Annotation(const QVariant &value);
 
     //!
     //! \brief isStatic
@@ -101,21 +100,21 @@ public:
     //! \param notation
     //! \return
     //!
-    const Notation &operator=(const Notation &notation);
+    const Annotation &operator=(const Annotation &notation);
 
     //!
     //! \brief operator =
     //! \param value
     //! \return
     //!
-    const Notation &operator=(const QVariant &value);
+    const Annotation &operator=(const QVariant &value);
 
     //!
     //! \brief operator ==
     //! \param value
     //! \return
     //!
-    bool operator==(const Notation &value)const;
+    bool operator==(const Annotation &value)const;
 
     //!
     //! \brief operator ==
@@ -129,21 +128,21 @@ public:
     //! \param value
     //! \return
     //!
-    const Notation &from(const Notation &value);
+    const Annotation &from(const Annotation &value);
 
     //!
     //! \brief from
     //! \param value
     //! \return
     //!
-    const Notation &from(const QVariant &value);
+    const Annotation &from(const QVariant &value);
 
     //!
     //! \brief equal
     //! \param notation
     //! \return
     //!
-    bool equal(const Notation&notation)const;
+    bool equal(const Annotation&notation)const;
 
     //!
     //! \brief equal
@@ -162,7 +161,7 @@ public:
     //! \brief clear
     //! \return
     //!
-    const Notation &clear();
+    const Annotation &clear();
 private:
     QByteArray _name;
     QVariant _value;

@@ -1,9 +1,7 @@
-#include "./qnotation_extended.h"
-#include "./qnotation_util.h"
+#include "./qannotation_extended.h"
+#include "./qannotation_util.h"
 
-namespace QNotation {
-
-#define dPvt() auto &p = *reinterpret_cast<NotationExtendedPvt *>(this->p)
+namespace QAnnotation {
 
 class NotationExtendedPvt
 {
@@ -33,44 +31,42 @@ Extended::Extended(QObject *parent)
 
 Extended::~Extended()
 {
-    dPvt();
-    delete &p;
+    delete p;
 }
 
 Util &Extended::notationUtil()
 {
-    dPvt();
-    return p.notationUtil;
+    return p->notationUtil;
 }
 
 QObject *Extended::parent()
 {
-    dPvt();
-    return p.parent;
+
+    return p->parent;
 }
 
 Collection &Extended::notation() const
 {
-    dPvt();
-    return p.notationUtil.notation();
+
+    return p->notationUtil.notation();
 }
 
 Collection &Extended::notation(const QMetaMethod &method) const
 {
-    dPvt();
-    return p.notationUtil.notation(method);
+
+    return p->notationUtil.notation(method);
 }
 
 Collection &Extended::notation(const QByteArray &methodName) const
 {
-    dPvt();
-    return p.notationUtil.notation(methodName);
+
+    return p->notationUtil.notation(methodName);
 }
 
 Collection &Extended::notationMethods() const
 {
-    dPvt();
-    return p.notationUtil.notationMethods();
+
+    return p->notationUtil.notationMethods();
 }
 
-} // namespace QNotation
+} // namespace QAnnotation

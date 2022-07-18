@@ -1,67 +1,67 @@
-#include "./qnotation_notation.h"
+#include "./qannotation_annotation.h"
 #include <QMetaType>
 #include <QJsonDocument>
 
-namespace QNotation {
+namespace QAnnotation {
 
-Notation::Notation() {}
+Annotation::Annotation() {}
 
-Notation::Notation(const Notation &value)
+Annotation::Annotation(const Annotation &value)
 {
     this->from(value);
 }
 
-Notation::Notation(const QVariant &value)
+Annotation::Annotation(const QVariant &value)
 {
     this->from(value);
 }
 
-bool Notation::isStatic() const
+bool Annotation::isStatic() const
 {
     return this->_isStatic;
 }
 
-const Notation &Notation::operator=(const Notation &notation)
+const Annotation &Annotation::operator=(const Annotation &notation)
 {
     return this->from(notation);
 }
 
-const Notation &Notation::operator=(const QVariant &notation)
+const Annotation &Annotation::operator=(const QVariant &notation)
 {
     return this->from(notation);
 }
 
-bool Notation::operator==(const Notation &value) const
+bool Annotation::operator==(const Annotation &value) const
 {
     return this->equal(value);
 }
 
-bool Notation::operator==(const QVariant &value) const
+bool Annotation::operator==(const QVariant &value) const
 {
     return this->equal(value);
 }
 
-QByteArray Notation::name() const
+QByteArray Annotation::name() const
 {
     return this->_name;
 }
 
-int Notation::classification() const
+int Annotation::classification() const
 {
     return this->_classification;
 }
 
-QVariant Notation::value() const
+QVariant Annotation::value() const
 {
     return this->_value;
 }
 
-QString Notation::toValueString() const
+QString Annotation::toValueString() const
 {
     return this->toValueByteArray();
 }
 
-QByteArray Notation::toValueByteArray() const
+QByteArray Annotation::toValueByteArray() const
 {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     int typeId = this->_value.typeId();
@@ -79,25 +79,25 @@ QByteArray Notation::toValueByteArray() const
     }
 }
 
-QVector<QByteArray> Notation::toValueStringVector() const
+QVector<QByteArray> Annotation::toValueStringVector() const
 {
     QVector<QByteArray> __return;
-    for(auto&v:this->_value.toList())
+    for(auto &v:this->_value.toList())
         __return.append(v.toByteArray());
     return __return;
 }
 
-QVariantList Notation::toValueList() const
+QVariantList Annotation::toValueList() const
 {
     return this->_value.toList();
 }
 
-QVariant Notation::toVariant() const
+QVariant Annotation::toVariant() const
 {
     return this->toHash();
 }
 
-QVariantHash Notation::toHash() const
+QVariantHash Annotation::toHash() const
 {
     return {{QStringLiteral("n"), this->_name},
             {QStringLiteral("v"), this->_value},
@@ -105,7 +105,7 @@ QVariantHash Notation::toHash() const
             {QStringLiteral("s"), this->_isStatic}};
 }
 
-QVariantMap Notation::toMap() const
+QVariantMap Annotation::toMap() const
 {
     return {{QStringLiteral("n"), this->_name},
             {QStringLiteral("v"), this->_value},
@@ -113,7 +113,7 @@ QVariantMap Notation::toMap() const
             {QStringLiteral("s"), this->_isStatic}};
 }
 
-const Notation &Notation::from(const Notation &value)
+const Annotation &Annotation::from(const Annotation &value)
 {
     this->_name = value.name();
     this->_value = value.value();
@@ -122,7 +122,7 @@ const Notation &Notation::from(const Notation &value)
     return *this;
 }
 
-const Notation &Notation::from(const QVariant &value)
+const Annotation &Annotation::from(const QVariant &value)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     int typeId = value.typeId();
@@ -156,7 +156,7 @@ const Notation &Notation::from(const QVariant &value)
     return *this;
 }
 
-bool Notation::equal(const Notation &notation) const
+bool Annotation::equal(const Annotation &notation) const
 {
     if (notation.name() != this->name())
         return {};
@@ -199,12 +199,12 @@ bool Notation::equal(const Notation &notation) const
     return true;
 }
 
-bool Notation::equal(const QVariant &value) const
+bool Annotation::equal(const QVariant &value) const
 {
-    return this->equal(Notation(value));
+    return this->equal(Annotation(value));
 }
 
-bool Notation::isValid() const
+bool Annotation::isValid() const
 {
     if (this->_name.trimmed().isEmpty())
         return false;
@@ -212,7 +212,7 @@ bool Notation::isValid() const
     return true;
 }
 
-const Notation &Notation::clear()
+const Annotation &Annotation::clear()
 {
     this->_name.clear();
     this->_value.clear();
@@ -221,4 +221,4 @@ const Notation &Notation::clear()
     return *this;
 }
 
-} // namespace QNotation
+} // namespace QAnnotation

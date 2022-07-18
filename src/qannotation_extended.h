@@ -1,19 +1,19 @@
 #pragma once
 
-#include "./qnotation_collection.h"
-#include "./qnotation_global.h"
-#include "./qnotation_util.h"
+#include "./qannotation_collection.h"
+#include "./qannotation_global.h"
+#include "./qannotation_util.h"
 #include <QHash>
 #include <QMetaMethod>
 #include <QObject>
 
-namespace QNotation {
-
+namespace QAnnotation {
+class NotationExtendedPvt;
 //!
 //! \brief The NotationExtended class
 //!
 //! Notation Util
-class Q_NOTATION_EXPORT Extended
+class Q_ANNOTATION_EXPORT Extended
 {
 public:
     enum Classification { Information, Documentation, Audit, Security, Operation };
@@ -29,7 +29,7 @@ public:
     //! \brief util
     //! \return
     //!
-    virtual QNotation::Util &notationUtil();
+    virtual QAnnotation::Util &notationUtil();
 
     //!
     //! \brief parent
@@ -57,7 +57,7 @@ public:
     virtual Collection &notationMethods() const;
 
 private:
-    void *p = nullptr;
+    NotationExtendedPvt *p = nullptr;
 };
 
-} // namespace QNotation
+} // namespace QAnnotation

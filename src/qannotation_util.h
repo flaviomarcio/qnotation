@@ -1,19 +1,19 @@
 #pragma once
 
-#include "./qnotation_collection.h"
-#include "./qnotation_global.h"
+#include "./qannotation_collection.h"
+#include "./qannotation_global.h"
 #include <QByteArray>
 #include <QHash>
 #include <QMetaMethod>
 #include <QObject>
 
-namespace QNotation {
-
+namespace QAnnotation {
+class UtilPvt;
 //!
 //! \brief The Util class
 //!
 //! Notation Util
-class Q_NOTATION_EXPORT Util
+class Q_ANNOTATION_EXPORT Util
 {
 public:
     //!
@@ -70,7 +70,7 @@ public:
     virtual Collection &notationMethods() const;
 
 private:
-    void *p = nullptr;
+    UtilPvt *p = nullptr;
 };
 
-} // namespace QNotation
+} // namespace QAnnotation

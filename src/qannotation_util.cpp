@@ -1,8 +1,6 @@
-#include "./qnotation_util.h"
+#include "./qannotation_util.h"
 
-namespace QNotation {
-
-#define dPvt() auto &p = *reinterpret_cast<UtilPvt *>(this->p)
+namespace QAnnotation {
 
 class UtilPvt
 {
@@ -55,7 +53,7 @@ public:
             return __return;
 
         for (auto &v : vList) {
-            Notation notation(v);
+            Annotation notation(v);
 
             if (!notation.isValid())
                 continue;
@@ -155,55 +153,54 @@ Util::Util(QObject *parent)
 
 Util::~Util()
 {
-    dPvt();
-    delete &p;
+
+    delete p;
 }
 
 Util &Util::from(QObject *object)
 {
-    dPvt();
-    p.parent = object;
-    p.init();
+    p->parent = object;
+    p->init();
     return *this;
 }
 
 bool Util::contains(const QByteArray &methodName, const QVariant &vNotation) const
 {
-    dPvt();
-    Collection &notations = p.init().notationsMethods[methodName.toLower()];
+
+    Collection &notations = p->init().notationsMethods[methodName.toLower()];
     const auto &notation = notations.find(vNotation);
     return notation.isValid();
 }
 
 QHash<Util::Type, Collection> &Util::notations() const
 {
-    dPvt();
-    return p.init().notations;
+
+    return p->init().notations;
 }
 
 Collection &Util::notation() const
 {
-    dPvt();
 
-    return p.init().notations[Util::Class];
+
+    return p->init().notations[Util::Class];
 }
 
 Collection &Util::notation(const QMetaMethod &method) const
 {
-    dPvt();
-    return p.init().notationsMethods[method.name().toLower()];
+
+    return p->init().notationsMethods[method.name().toLower()];
 }
 
 Collection &Util::notation(const QByteArray &methodName) const
 {
-    dPvt();
-    return p.init().notationsMethods[methodName];
+
+    return p->init().notationsMethods[methodName];
 }
 
 Collection &Util::notationMethods() const
 {
-    dPvt();
-    return p.init().notations[Util::Method];
+
+    return p->init().notations[Util::Method];
 }
 
-} // namespace QNotation
+} // namespace QAnnotation

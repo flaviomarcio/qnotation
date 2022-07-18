@@ -1,22 +1,22 @@
-#include "./qnotation_collection.h"
+#include "./qannotation_collection.h"
 
-namespace QNotation {
+namespace QAnnotation {
 
 Collection::Collection()
     :
-      QHash<QByteArray, Notation>{}
+      QHash<QByteArray, Annotation>{}
 {
 
 }
 
-Collection::Collection(const QHash<QByteArray, Notation> &collection)
+Collection::Collection(const QHash<QByteArray, Annotation> &collection)
     :
-      QHash<QByteArray, Notation>{collection}
+      QHash<QByteArray, Annotation>{collection}
 {
 
 }
 
-bool Collection::find(const QVariant &value, Notation &notationOut) const
+bool Collection::find(const QVariant &value, Annotation &notationOut) const
 {
     const auto &notation = this->find(value);
     if (notation.isValid()) {
@@ -28,15 +28,15 @@ bool Collection::find(const QVariant &value, Notation &notationOut) const
     return false;
 }
 
-const Notation &Collection::find(const QVariant &value) const
+const Annotation &Collection::find(const QVariant &value) const
 {
-    static Notation defaultValue;
+    static Annotation defaultValue;
 
-    Notation notationIn(value);
+    Annotation notationIn(value);
     if (!notationIn.isValid())
         return defaultValue;
 
-    QHashIterator<QByteArray, Notation> i(*this);
+    QHashIterator<QByteArray, Annotation> i(*this);
     while (i.hasNext()) {
         i.next();
         auto &notation = i.value();
@@ -69,11 +69,11 @@ bool Collection::contains(const QVariant &value) const
     }
 
     for(auto &v:vList){
-        Notation notationIn(v);
+        Annotation notationIn(v);
         if (!notationIn.isValid())
             return {};
 
-        QHashIterator<QByteArray, Notation> i(vThis);
+        QHashIterator<QByteArray, Annotation> i(vThis);
         while (i.hasNext()) {
             i.next();
             auto &notation = i.value();
@@ -86,7 +86,7 @@ bool Collection::contains(const QVariant &value) const
 
 bool Collection::containsClassification(int classification) const
 {
-    QHashIterator<QByteArray, Notation> i(*this);
+    QHashIterator<QByteArray, Annotation> i(*this);
     while (i.hasNext()) {
         i.next();
         const auto &notation = i.value();
@@ -96,4 +96,4 @@ bool Collection::containsClassification(int classification) const
     return {};
 }
 
-} // namespace QNotation
+} // namespace QAnnotation

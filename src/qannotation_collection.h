@@ -3,15 +3,15 @@
 #include <QObject>
 #include <QMetaMethod>
 #include <QHash>
-#include "./qnotation_global.h"
-#include "./qnotation_notation.h"
+#include "./qannotation_global.h"
+#include "./qannotation_annotation.h"
 
-namespace QNotation {
+namespace QAnnotation {
 
 //!
 //! \brief NotationCollection
 //!
-class Q_NOTATION_EXPORT Collection:public QHash<QByteArray, Notation>{
+class Q_ANNOTATION_EXPORT Collection:public QHash<QByteArray, Annotation>{
 public:
     //!
     //! \brief NotationCollection
@@ -22,21 +22,21 @@ public:
     //! \brief NotationCollection
     //! \param collection
     //!
-    explicit Collection(const QHash<QByteArray, Notation> &collection);
+    explicit Collection(const QHash<QByteArray, Annotation> &collection);
 
     //!
     //! \brief find
     //! \param value
     //! \return
     //!
-    bool find(const QVariant &value, Notation &notationOut)const;
+    bool find(const QVariant &value, Annotation &notationOut)const;
 
     //!
     //! \brief find
     //! \param value
     //! \return
     //!
-    const Notation &find(const QVariant &value)const;
+    const Annotation &find(const QVariant &value)const;
 
     //!
     //! \brief contains
