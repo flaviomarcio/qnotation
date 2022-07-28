@@ -1,10 +1,9 @@
-TARGET = QNotation
+TARGET = QAnnotation
 TEMPLATE = lib
 
-CONFIG += silent
-CONFIG += c++17
+CONFIG += silent CONFIG += c++17
 
-include($$PWD/src/qnotation.pri)
+include($$PWD/qannotation.pri)
 
 DISTFILES += \
     README.md
